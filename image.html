@@ -3,7 +3,7 @@
 <head>
 	<meta http-equiv="content-type" content="text/html" />
 	<meta name="author" content="kumaomao" />
-
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 	<title>斗图</title>
 	<link rel="stylesheet" href="./layui/css/layui.css">
 	<link rel="stylesheet" href="./css/image.css">
@@ -11,13 +11,13 @@
 </head>
 
 <body>
-<div class="layui-fluid" id="app">
+<div class="layui-container" id="app">
 	<div class="layui-row">
-		<div class="layui-col-xs12 layui-col-xs12 top">
+		<div class="layui-col-xs12  top">
 			
-			<div class="img" id="big" :style="{background:background}">
-				 <img class="bg" ref="myImg" :src="imgUrl"/>
-			  <p v-html="msg" ref="myMsg" @mousedown="down(event)" @touchstart="m_down(event)" v-bind:style="{fontSize:size+'px'}"  class="text">
+			<div :class="{img:true,'layui-col-xs8':true,'layui-col-xs-offset2':true,'layui-col-md4':true,'layui-col-md-offset4':true}" id="big" :style="{background:background}" ref="myImgDiv">
+				 <img :class="{bg:true,flipx:isFlipx,'layui-col-xs12':true}" ref="myImg" :src="imgUrl"/>
+			  <p v-html="msg" ref="myMsg" @mousedown="down(event)" @touchstart="m_down(event)" v-bind:style="{fontSize:size+'px',color:color}"  class="text">
 					
 			  </p>
 
@@ -26,13 +26,13 @@
 		  
 		</div>
 		
-		<div class="layui-col-xs12 layui-col-xs12">
+		<div class="layui-col-xs12">
 			<div class=" menu">
 				<form class="layui-form layui-form-pane" action="">
-					<div class="layui-form-item">
-							<label class="layui-form-label font_left">输入内容</label>
+					<div class="layui-form-item layui-col-xs12">
+							<label class="layui-form-label font_left layui-col-xs4">输入内容</label>
 							<div class="layui-input-block">
-								<textarea name="desc" v-on:input="changeMsg" v-model="msg" placeholder="请输入内容" class="layui-textarea"></textarea>
+								<textarea name="desc" v-model="msg" placeholder="请输入内容" class="layui-textarea"></textarea>
 							</div>	
 					</div>
 					<div class="layui-collapse">
@@ -41,10 +41,10 @@
 						<div class="layui-colla-content ">
 							<div class="layui-form-item">
 								<div class="layui-inline">
-									<label class="layui-form-label">选择图片</label>
+									<label class="layui-form-label">选择字体</label>
 									<div class="layui-input-inline font">
 									  <select name="face" lay-filter="face" >
-										<option v-for="img in imgArr" :value="img">{{img}}</option>
+										<option value="img">老子还没做</option>
 										
 									  </select>
 									</div>
@@ -81,7 +81,8 @@
 					 <button class="layui-btn btn" type="button" @click="makeImg">生成图片</button>
 					
 				</form>
-		 
+				<div id="img" class="layui-col-xs12 layui-col-md12">
+				</div>
 		  </div>
 		</div>
 		

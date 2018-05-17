@@ -6,95 +6,33 @@
 
 	<title>斗图</title>
 	<link rel="stylesheet" href="./layui/css/layui.css">
-	<link rel="stylesheet" href="./css/image.css">
-	<link rel="stylesheet" href="./css/jquery.minicolors.css">
+	<link rel="stylesheet" href="./css/index.css">
 </head>
 
 <body>
 <div class="layui-fluid" id="app">
 	<div class="layui-row">
-		<div class="layui-col-xs12 layui-col-xs12 top">
-			
-			<div class="img" id="big" :style="{background:background}">
-				 <img class="bg flipx" ref="myImg" :src="imgUrl"/>
-			  <p v-html="msg" ref="myMsg" @mousedown="down(event)" @touchstart="m_down(event)" v-bind:style="{fontSize:size+'px'}"  class="text">
-					
-			  </p>
-
+		<div class="layui-col-xs12 layui-col-md12  top">
+			<div id="masonry" class="container-fluid">
+				
+				<div v-for="img in imgArr" class="box" >
+					 <a :href="toUrl+img[0]">	
+						<img :src="img[1]">
+					 </a>
+				</div>
+				
 			</div>
+			
 		 
 		  
-		</div>
-		
-		<div class="layui-col-xs12 layui-col-xs12">
-			<div class=" menu">
-				<form class="layui-form layui-form-pane" action="">
-					<div class="layui-form-item">
-							<label class="layui-form-label font_left">输入内容</label>
-							<div class="layui-input-block">
-								<textarea name="desc" v-on:input="changeMsg" v-model="msg" placeholder="请输入内容" class="layui-textarea"></textarea>
-							</div>	
-					</div>
-					<div class="layui-collapse">
-					  <div class="layui-colla-item">
-						<h2 class="layui-colla-title">更多选项</h2>
-						<div class="layui-colla-content ">
-							<div class="layui-form-item">
-								<div class="layui-inline">
-									<label class="layui-form-label">选择图片</label>
-									<div class="layui-input-inline font">
-									  <select name="face" lay-filter="face" >
-										<option v-for="img in imgArr" :value="img">{{img}}</option>
-										
-									  </select>
-									</div>
-								</div>	
-								<div class="layui-inline">
-									<label class="layui-form-label">字体大小</label>
-									<div class="layui-input-inline font">
-									  <input type="text" name="size" v-model="size" placeholder="请输入字体大小" lay-verify="number" autocomplete="off" class="layui-input">
-									</div>
-								</div>									
-							</div>
-							
-							<div class="layui-form-item">
-								<div class="layui-inline">
-									<label class="layui-form-label">选择颜色</label>
-									<div class="layui-input-inline font">
-									  <input type="text" name="color"  id="hue-demo" class="demo layui-input" data-control="hue" autocomplete="off" v-model="color">
-									</div>
-								</div>
-								<div class="layui-inline">
-									<label class="layui-form-label">图片方向</label>
-									<div class="layui-input-inline font">
-									  <select name="flip" lay-filter="flip">
-										<option value="0" selected="">系统默认</option>
-										<option value="1" >左右翻转</option>
-									  </select>
-									</div>
-								</div>								
-							</div>
-							
-						</div>
-					  </div>
-					</div>
-					 <button class="layui-btn btn" type="button" @click="makeImg">生成图片</button>
-					
-				</form>
-		 
-		  </div>
-		</div>
-		
-		
+		</div>	
 	</div>
 </div>
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script src="./layui/layui.js"></script>
+<script src="./js/masonry-docs.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue"></script>
-<script src="./js/jquery.minicolors.js"></script>
-<script src="./js/html2canvas.min.js"></script>
-
-<script src="./js/image.js"></script>
+<script src="./js/index.js"></script>
 <style>
 
 </style>

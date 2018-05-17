@@ -28,7 +28,7 @@
 
 							if( opacity ) log += ', ' + opacity;
 
-							console.log(log);
+							vue.color=log;
 
 						} catch(e) {}
 
@@ -52,8 +52,7 @@ var vue = new Vue({
 	data: {
 		msgImg: '',
 		msg:'',
-		Url:'http://localhost/admin/public',
-		imgUrl:'./images/1.jpg',
+		imgUrl:'',
 		isTrue:false,
 		imgWidth:'',
 		imgHeight:'',
@@ -66,33 +65,18 @@ var vue = new Vue({
 		nature:'',
 		face:0,
 		preline:'pre-line',
-		color:'',
+		color:'#000000',
 		background:'',
 		imgArr:[],
+		isFlipx:false,
 	},
 	created(){
-		this.getNature();
+		this.getUrlName('id');
 	},
 	methods:{
-		getNature:function(){
-			var that = this,
-				imgArr=[];
-			this.background = 'url('+this.imgUrl+')';
-			for(var i=0;i<33;i++){
-				imgArr[i]=i+1;
-			}
-			this.imgArr=imgArr;
-			console.log(imgArr);
-			//$.post('http://localhost/admin/public/index.php/index/setImage/setNature',{},function(res){
-				//if(res.code=200){
-					//that.nature=res.data;
-				//}
-				
-			//});
-		},
-		changeMsg:function(){
-			
-				
+		getUrlName:function(name){
+			var name=getQueryString(name);
+				this.imgUrl = './images/'+name+'.jpg';
 				
 		},
 		getDom:function(e,isMobile){
@@ -167,9 +151,11 @@ var vue = new Vue({
 				
 				var image = new Image();
 				image.src = canvas.toDataURL("image/png");
-				document.body.appendChild(image);
+				$("#img").append(image);
+				$("#img img").addClass('layui-col-xs4 layui-col-md4');
 				
-		});
+				
+		})
 		
 	}
 		
@@ -180,8 +166,14 @@ layui.use(['form','element'], function(){
   var form = layui.form,
 	  element = layui.element,
 	  $ = layui.jquery; 
+	  //左右翻转
 	form.on('select(flip)',function(data){
-		
+		if(data.value==0){
+			vue.isFlipx=false;
+			return;
+		}
+		vue.isFlipx=true;
+		return;
 		
 		
 	});
@@ -193,5 +185,12 @@ layui.use(['form','element'], function(){
 	});
   form.render();
 });   
+function getQueryString(name) { 
+  let reg = `(^|&)${name}=([^&]*)(&|$)`
+  let r = window.location.search.substr(1).match(reg); 
+  if (r != null) return unescape(r[2]); return null; 
+}
+
+
 
 

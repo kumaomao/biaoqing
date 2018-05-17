@@ -6,8 +6,8 @@
 	text-align:center;
 }
 .menu{
-	width:50%;
-	margin-left:25%;
+	width:100%;
+	
 	margin-top:20px;
 }
 .font_left{
@@ -22,7 +22,7 @@
 	display:inline-block !important; 
 	text-align:left;
 	position:absolute;
-	top:0;
+	bottom:0;
 	left:0;
 	z-index:9999;
 	white-space: pre-line;
@@ -37,15 +37,7 @@
 .demo{
 	padding-left:30px;
 }
-._text {
-    
-     text-align: left;
-     position: absolute;
-     top: 0; 
-     left: 0; 
-     z-index: -9999; 
-    white-space: pre-line; 
-}
+
 /*水平翻转*/
 .flipx {
     -moz-transform:scaleX(-1);
