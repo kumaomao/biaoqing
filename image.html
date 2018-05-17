@@ -16,7 +16,7 @@
 		<div class="layui-col-xs12 layui-col-xs12 top">
 			
 			<div class="img" id="big" :style="{background:background}">
-				 <img class="bg flipx" ref="myImg" :src="imgUrl"/>
+				 <img class="bg" ref="myImg" :src="imgUrl"/>
 			  <p v-html="msg" ref="myMsg" @mousedown="down(event)" @touchstart="m_down(event)" v-bind:style="{fontSize:size+'px'}"  class="text">
 					
 			  </p>
@@ -95,8 +95,6 @@
 <script src="./js/html2canvas.min.js"></script>
 
 <script src="./js/image.js"></script>
-<style>
 
-</style>
 </body>
 </html>
