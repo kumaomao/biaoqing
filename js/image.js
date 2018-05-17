@@ -81,12 +81,12 @@ var vue = new Vue({
 		},
 		getDom:function(e,isMobile){
 			this._el = this.$refs['myMsg'];
-			var img_url = this.$refs['myImg'].src;
-			var img = new Image();
-			// 改变图片的src
-			img.src = img_url;
-			this.imgWidth=img.width;
-			this.imgHeight=img.height;
+			var img = this.$refs['myImg'];
+			
+			
+			this.imgWidth=img.offsetWidth;
+			this.imgHeight=img.offsetHeight;
+			console.log(this.imgWidth);
 			e = isMobile?e.changedTouches[0]:e;
 			this.startX = e.clientX - this._el.offsetLeft;
 			this.startY = e.clientY - this._el.offsetTop;  
