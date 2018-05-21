@@ -48,3 +48,15 @@
     /*IE*/
     filter:FlipH;
 }
+
+/*滑块*/
+.bar {
+	border-radius:0px !important;
+}
+.hk{
+	position:absolute;
+	top:-4px;
+	width:10px;
+	height:15px;
+	background-color:#FF5722;
+}

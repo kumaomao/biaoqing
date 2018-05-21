@@ -69,9 +69,16 @@ var vue = new Vue({
 		background:'',
 		imgArr:[],
 		isFlipx:false,
+		width:'',
+		height:'',
+		x:'',
+		y:'',
+		
 	},
 	created(){
 		this.getUrlName('id');
+		
+		
 	},
 	methods:{
 		getUrlName:function(name){
@@ -80,13 +87,7 @@ var vue = new Vue({
 				
 		},
 		getDom:function(e,isMobile){
-			this._el = this.$refs['myMsg'];
-			var img = this.$refs['myImg'];
-			
-			
-			this.imgWidth=img.offsetWidth;
-			this.imgHeight=img.offsetHeight;
-			console.log(this.imgWidth);
+			this.changeMsg();
 			e = isMobile?e.changedTouches[0]:e;
 			this.startX = e.clientX - this._el.offsetLeft;
 			this.startY = e.clientY - this._el.offsetTop;  
@@ -96,10 +97,7 @@ var vue = new Vue({
 			e = isMobile?e.changedTouches[0]:e;
 			el.style.left = e.clientX - this.startX + "px";  
 			el.style.top = e.clientY - this.startY + "px";  
-			this.msgHeight=el.offsetWidth;
-			this.msgWidth=el.offsetHeight;
-			width= this.imgWidth-this.msgHeight;
-			height = this.imgHeight-this.msgWidth;
+		
 			/*对于大的DIV四个边界的判断*/  
 			if (e.clientX - this.startX <= 0) {  
 				el.style.left = 0 + "px";  
@@ -155,9 +153,45 @@ var vue = new Vue({
 				$("#img img").addClass('layui-col-xs4 layui-col-md4');
 				
 				
-		})
-		
-	}
+			});
+		},
+		changeMsg:function(){
+			this._el = this.$refs['myMsg'];
+			var img = this.$refs['myImg'];	
+			this.imgWidth=img.offsetWidth;
+			this.imgHeight=img.offsetHeight;
+			this.msgHeight=this._el.offsetWidth;
+			this.msgWidth=this._el.offsetHeight;
+			width= this.imgWidth-this.msgHeight;
+			height = this.imgHeight-this.msgWidth;
+			this.width=width;
+			this.height=height;
+		},
+		//设置x
+		changeX:function(){
+			var x = this.x,
+				el = this._el;
+			if(x<0){
+				x=0;
+			}
+			if(x>this.width){
+				x=this.width;
+			}
+			
+			el.style.left = x+'px';
+		},
+		changeY:function(){
+			var y = this.y,
+				el = this._el;
+			if(y<0){
+				y=0;
+			}
+			if(y>this.height){
+				y=this.height;
+			}
+			
+			el.style.top = y+'px';
+		}
 		
 
 	},
@@ -180,8 +214,6 @@ layui.use(['form','element'], function(){
 	
 	form.on('select(face)',function(data){
 		vue.imgUrl='./images/'+data.value+'.jpg';
-		
-		
 	});
   form.render();
 });   
@@ -190,6 +222,7 @@ function getQueryString(name) {
   let r = window.location.search.substr(1).match(reg); 
   if (r != null) return unescape(r[2]); return null; 
 }
+
 
 
 

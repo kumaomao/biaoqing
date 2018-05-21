@@ -20,9 +20,10 @@
 			  <p v-html="msg" ref="myMsg" @mousedown="down(event)" @touchstart="m_down(event)" v-bind:style="{fontSize:size+'px',color:color}"  class="text">
 					
 			  </p>
-
+			
 			</div>
-		 
+			
+					 
 		  
 		</div>
 		
@@ -32,13 +33,28 @@
 					<div class="layui-form-item layui-col-xs12">
 							<label class="layui-form-label font_left layui-col-xs4">输入内容</label>
 							<div class="layui-input-block">
-								<textarea name="desc" v-model="msg" placeholder="请输入内容" class="layui-textarea"></textarea>
+								<textarea name="desc" v-model="msg" @input="changeMsg" placeholder="请输入内容" class="layui-textarea"></textarea>
 							</div>	
 					</div>
 					<div class="layui-collapse">
 					  <div class="layui-colla-item">
 						<h2 class="layui-colla-title">更多选项</h2>
 						<div class="layui-colla-content ">
+							<div class="layui-form-item" >
+								<div class="layui-inline">
+									<label class="layui-form-label">X轴(0~{{width}})</label>
+									<div class="layui-input-inline font">
+									  <input type="text" name="width" @input='changeX'   id="x" class="layui-input"  autocomplete="off" v-model="x">
+									</div>
+								</div>
+								<div class="layui-inline">
+									<label class="layui-form-label">Y轴(0~{{height}})</label>
+									<div class="layui-input-inline font">
+									  <input type="text" name="height" @input='changeY'  id="y" class="layui-input"  autocomplete="off" v-model="y">
+									</div>
+								</div>								
+							</div>
+						
 							<div class="layui-form-item">
 								<div class="layui-inline">
 									<label class="layui-form-label">选择字体</label>
@@ -75,10 +91,12 @@
 								</div>								
 							</div>
 							
+							
 						</div>
 					  </div>
 					</div>
 					 <button class="layui-btn btn" type="button" @click="makeImg">生成图片</button>
+					<a href="./index.html" class="layui-btn btn  layui-btn-danger">返回首页</a>
 					
 				</form>
 				<div id="img" style="margin-top:20px;" class="layui-col-xs12 layui-col-md12">
