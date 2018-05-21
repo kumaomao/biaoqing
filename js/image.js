@@ -86,6 +86,18 @@ var vue = new Vue({
 				this.imgUrl = './images/'+name+'.jpg';
 				
 		},
+		changeMsg:function(){
+			this._el = this.$refs['myMsg'];
+			var img = this.$refs['myImg'];	
+			this.imgWidth=img.offsetWidth;
+			this.imgHeight=img.offsetHeight;
+			this.msgHeight=this._el.offsetWidth;
+			this.msgWidth=this._el.offsetHeight;
+			width= this.imgWidth-this.msgHeight;
+			height = this.imgHeight-this.msgWidth;
+			this.width=width;
+			this.height=height;
+		},
 		getDom:function(e,isMobile){
 			this.changeMsg();
 			e = isMobile?e.changedTouches[0]:e;
@@ -97,20 +109,27 @@ var vue = new Vue({
 			e = isMobile?e.changedTouches[0]:e;
 			el.style.left = e.clientX - this.startX + "px";  
 			el.style.top = e.clientY - this.startY + "px";  
-		
+			this.x=e.clientX - this.startX;
+			this.y=e.clientY - this.startY;
 			/*对于大的DIV四个边界的判断*/  
 			if (e.clientX - this.startX <= 0) {  
 				el.style.left = 0 + "px";  
+				this.x=0;
+			
 			}  
 			if (e.clientY - this.startY <= 0) {  
 				el.style.top = 0 + "px";  
+				this.y=0;
 			}  
 			if (e.clientX - this.startX >= width) {  
 				el.style.left = width + "px";  
+				this.x=width;
 			}  
 			if (e.clientY - this.startY>= height) {  
 				el.style.top = height + "px";  
-			}  
+				this.y=height;
+			}
+			
 		},
 		//pc触发
 		down:function(e){
@@ -155,18 +174,7 @@ var vue = new Vue({
 				
 			});
 		},
-		changeMsg:function(){
-			this._el = this.$refs['myMsg'];
-			var img = this.$refs['myImg'];	
-			this.imgWidth=img.offsetWidth;
-			this.imgHeight=img.offsetHeight;
-			this.msgHeight=this._el.offsetWidth;
-			this.msgWidth=this._el.offsetHeight;
-			width= this.imgWidth-this.msgHeight;
-			height = this.imgHeight-this.msgWidth;
-			this.width=width;
-			this.height=height;
-		},
+		
 		//设置x
 		changeX:function(){
 			var x = this.x,
