@@ -23,37 +23,34 @@
 			
 			</div>
 			
-					 
+			
+			<div  :class="{'layui-col-xs2':true,'layui-col-md4':true}" v-show="isShow" style="height:200px;">
+				
+				<input class="y_hk" type="range" min="0" @input="changeY"  v-model="y" :max="height" value="0" :style="{'width':imgHeight+'px','position':'absolute','left':-((imgHeight-21)/2)+'px','top':((imgHeight-21)/2)+'px'}">	 
+			
+			</div>
+			
 		  
+	
 		</div>
-		
+		<div v-show="isShow" :class="{'layui-col-xs8':true,'layui-col-xs-offset2':true,'layui-col-md4':true,'layui-col-md-offset4':true}" >
+			<input type="range" value="0" min="0" @input="changeX"  v-model="x" :max="width" style="width:100%;">
+			
+		</div>
 		<div class="layui-col-xs12">
 			<div class=" menu">
 				<form class="layui-form layui-form-pane" action="">
 					<div class="layui-form-item layui-col-xs12">
 							<label class="layui-form-label font_left layui-col-xs4">输入内容</label>
 							<div class="layui-input-block">
-								<textarea name="desc" v-model="msg" @input="changeMsg" placeholder="请输入内容" class="layui-textarea"></textarea>
+								<textarea name="desc" v-model="msg"  @input="changeMsg" placeholder="请输入内容" class="layui-textarea"></textarea>
 							</div>	
 					</div>
 					<div class="layui-collapse">
 					  <div class="layui-colla-item">
 						<h2 class="layui-colla-title">更多选项</h2>
 						<div class="layui-colla-content ">
-							<div class="layui-form-item" >
-								<div class="layui-inline">
-									<label class="layui-form-label">X轴(0~{{width}})</label>
-									<div class="layui-input-inline font">
-									  <input type="text" name="width" @input='changeX'   id="x" class="layui-input"  autocomplete="off" v-model="x">
-									</div>
-								</div>
-								<div class="layui-inline">
-									<label class="layui-form-label">Y轴(0~{{height}})</label>
-									<div class="layui-input-inline font">
-									  <input type="text" name="height" @input='changeY'  id="y" class="layui-input"  autocomplete="off" v-model="y">
-									</div>
-								</div>								
-							</div>
+							
 						
 							<div class="layui-form-item">
 								<div class="layui-inline">

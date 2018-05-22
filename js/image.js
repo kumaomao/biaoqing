@@ -73,6 +73,8 @@ var vue = new Vue({
 		height:'',
 		x:'',
 		y:'',
+		isShow:false,
+		y_left:'',
 		
 	},
 	created(){
@@ -97,6 +99,8 @@ var vue = new Vue({
 			height = this.imgHeight-this.msgWidth;
 			this.width=width;
 			this.height=height;
+			
+			this.isShow=true;
 		},
 		getDom:function(e,isMobile){
 			this.changeMsg();
@@ -175,28 +179,18 @@ var vue = new Vue({
 			});
 		},
 		
+		
 		//设置x
 		changeX:function(){
 			var x = this.x,
 				el = this._el;
-			if(x<0){
-				x=0;
-			}
-			if(x>this.width){
-				x=this.width;
-			}
+			
 			
 			el.style.left = x+'px';
 		},
 		changeY:function(){
 			var y = this.y,
 				el = this._el;
-			if(y<0){
-				y=0;
-			}
-			if(y>this.height){
-				y=this.height;
-			}
 			
 			el.style.top = y+'px';
 		}

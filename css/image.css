@@ -50,13 +50,14 @@
 }
 
 /*滑块*/
-.bar {
-	border-radius:0px !important;
+.y_d{
+	position:relative;
 }
-.hk{
-	position:absolute;
-	top:-4px;
-	width:10px;
-	height:15px;
-	background-color:#FF5722;
+.y_hk{
+	transform:rotate(90deg);
+	-ms-transform:rotate(90deg); 	/* IE 9 */
+	-moz-transform:rotate(90deg); 	/* Firefox */
+	-webkit-transform:rotate(90deg); /* Safari 和 Chrome */
+	-o-transform:rotate(90deg); 	/* Opera */
+	
 }
