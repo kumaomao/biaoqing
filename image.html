@@ -15,8 +15,8 @@
 	<div class="layui-row">
 		<div class="layui-col-xs12  top">
 			
-			<div :class="{img:true,'layui-col-xs8':true,'layui-col-xs-offset2':true,'layui-col-md4':true,'layui-col-md-offset4':true}" id="big" :style="{background:background}" ref="myImgDiv">
-				 <img :class="{bg:true,flipx:isFlipx,'layui-col-xs12':true}" ref="myImg" :src="imgUrl"/>
+			<div :class="{img:true,'layui-col-xs8':true,'layui-col-xs-offset2':true,'layui-col-md4':true,'layui-col-md-offset4':true,bg:true}" id="big" :style="{background:background}" ref="myImgDiv">
+				 <img :class="{flipx:isFlipx,'layui-col-xs12':true}" ref="myImg" :src="imgUrl"/>
 			  <p v-html="msg" ref="myMsg" @mousedown="down(event)" @touchstart="m_down(event)" v-bind:style="{fontSize:size+'px',color:color}"  class="text">
 					
 			  </p>
@@ -87,15 +87,27 @@
 									</div>
 								</div>								
 							</div>
+							<div class="layui-form-item">
+								<div class="layui-inline">
+									<label class="layui-form-label">图片框高度</label>
+									<div class="layui-input-inline font">
+									  <input type="text" name="height" v-model="addheight" @input="updateHeight" placeholder="请输入增加数值" lay-verify="number" autocomplete="off" class="layui-input">
+									</div>
+								</div>	
+														
+							</div>
 							
 							
 						</div>
 					  </div>
 					</div>
-					 <button class="layui-btn btn" type="button" @click="makeImg">生成图片</button>
-					<a href="./index.html" class="layui-btn btn  layui-btn-danger">返回首页</a>
+					
+					
 					
 				</form>
+				 <button class="layui-btn btn" type="button" @click="makeImg">生成图片</button>
+				 <button type="button " class="layui-btn btn layui-btn-warm" id="upload">上传图片</button>
+					<a href="./index.html" class="layui-btn btn  layui-btn-danger">返回首页</a>
 				<div id="img" style="margin-top:20px;" class="layui-col-xs12 layui-col-md12">
 				</div>
 		  </div>

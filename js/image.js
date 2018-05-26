@@ -75,6 +75,7 @@ var vue = new Vue({
 		y:'',
 		isShow:false,
 		y_left:'',
+		addheight:0,
 		
 	},
 	created(){
@@ -90,7 +91,7 @@ var vue = new Vue({
 		},
 		changeMsg:function(){
 			this._el = this.$refs['myMsg'];
-			var img = this.$refs['myImg'];	
+			var img = this.$refs['myImgDiv'];	
 			this.imgWidth=img.offsetWidth;
 			this.imgHeight=img.offsetHeight;
 			this.msgHeight=this._el.offsetWidth;
@@ -193,15 +194,39 @@ var vue = new Vue({
 				el = this._el;
 			
 			el.style.top = y+'px';
+		},
+		updateHeight:function(){
+			//修改图片框高度
+			var img = this.$refs['myImgDiv'];
+			img.style.height=(img.offsetHeight/1+this.addheight/1)+'px';
+			console.log(img.style.height);
 		}
 		
 
 	},
 });
-layui.use(['form','element'], function(){
+layui.use(['form','element','upload'], function(){
   var form = layui.form,
 	  element = layui.element,
+	  upload = layui.upload,
 	  $ = layui.jquery; 
+	  
+	  
+	 //普通图片上传
+  var uploadInst = upload.render({
+    elem: '#upload'
+    ,url: '#'
+	
+    ,before: function(obj){
+      //预读本地文件示例，不支持ie8
+      obj.preview(function(index, file, result){
+		  vue.imgUrl=result;
+        
+      });
+    }
+    
+  });
+	  
 	  //左右翻转
 	form.on('select(flip)',function(data){
 		if(data.value==0){
